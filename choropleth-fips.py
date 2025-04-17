@@ -25,12 +25,17 @@ choro = px.choropleth(fips_df, geojson=counties, locations='fips', color='unemp'
                           )
 choro.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 
+# add range slider 
+rs1 = dcc.RangeSlider(0, 12, value=[2, 4], id="range-slider-1", included=True)
+
+
 # instantiate app 
 app = Dash() 
 
 app.layout = [
     html.H1("Unemployment Rate By FIPS County ", style={'textAlign':'center'}),
-    dcc.Graph(figure=choro)
+    dcc.Graph(figure=choro),
+    rs1 
 ]
 
 if __name__ == '__main__':
